@@ -37,17 +37,47 @@ const rollDice = () => {
         dice.textContent = diceValuesArr[index];
     });
 }
-//Actualiza el valor de rolls y round
+//FUNCION Actualiza el valor de rolls y round
 const updateStats = () => { 
     currentRoundRollsText.textContent = rolls
     currentRoundText.textContent = round;
 }
 
-//Seleccionar option y sumar puntuacion
+//FUNCION Seleccionar option y sumar puntuacion
 const updateRadioOption = (optionNode, score) => {
     scoreInputs[optionNode].disabled = false;
     scoreInputs[optionNode].value = score;
     scoreSpans[optionNode].textContent = `, score = ${score}`
+}
+
+//FUNCION para dectectar los duplicados y mostrar la puntacion
+const getHighestDuplicates = (arr) =>{
+    const counts = {}
+    for (const num of arr) {
+        if (counts[num]) {
+            counts[num]++;
+        } else {
+            counts[num] = 1
+        }
+    }
+    let highestCount = 0;
+    for (const num of arr){
+        const count = counts[num]
+        if(count >= 3 && count > highestCount ){
+            highestCount = count;
+        }
+        if (count >= 4 && count > highestCount){
+            highestCount = count;
+        }
+    }
+    const sumOfAllDice = diceValuesArr.reduce((a,b)=> a + b ,0);
+    if (highestCount >= 4) {
+        updateRadioOption(1,sumOfAllDice);
+    }
+    if (highestCount >= 3) {
+        updateRadioOption(0,sumOfAllDice);
+    }
+    updateRadioOption(5,0);
 }
 
 //Evento botton Tirar dados
@@ -58,7 +88,7 @@ rollDiceBtn.addEventListener("click",()=>{
         rolls++
         rollDice();
         updateStats();
-        updateRadioOption(0,10);
+        getHighestDuplicates(diceValuesArr);
     }
 }) 
 
