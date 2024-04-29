@@ -25,6 +25,30 @@ let round = 1;
 
 //Eventos y funciones
 
+//Funcion Tirar dados
+const rollDice = () => {
+    diceValuesArr = [];
+    for (let i = 0; i < 5; i++) {
+        const randomDice = Math.floor(Math.random() * 6) + 1;
+        diceValuesArr.push(randomDice);
+
+    };
+    listOfAllDice.forEach((dice,index) => {
+        dice.textContent = diceValuesArr[index];
+    });
+}
+
+//Evento botton Tirar dados
+rollDiceBtn.addEventListener("click",()=>{
+   if(rolls === 3){
+    alert("Has hecho tres tiradas esta ronda. Por favor, seleccione una puntuación");
+    }else{
+        rolls++
+        rollDice();
+    }
+}) 
+
+//Mostrar y ocultar div con reglas
 rulesBtn.addEventListener("click", ()=>{
     isModalShowing = !isModalShowing;
     if (isModalShowing) {
@@ -35,3 +59,4 @@ rulesBtn.addEventListener("click", ()=>{
         rulesContainer.style.display = "none";
     }
 });
+
