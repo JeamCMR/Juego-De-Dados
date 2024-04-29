@@ -37,6 +37,12 @@ const rollDice = () => {
         dice.textContent = diceValuesArr[index];
     });
 }
+//Actualiza el valor de rolls y round
+const updateStats = () => { 
+    currentRoundRollsText.textContent = rolls
+    currentRoundText.textContent = round;
+}
+
 
 //Evento botton Tirar dados
 rollDiceBtn.addEventListener("click",()=>{
@@ -45,17 +51,19 @@ rollDiceBtn.addEventListener("click",()=>{
     }else{
         rolls++
         rollDice();
+        updateStats();
     }
 }) 
+
 
 //Mostrar y ocultar div con reglas
 rulesBtn.addEventListener("click", ()=>{
     isModalShowing = !isModalShowing;
     if (isModalShowing) {
-        rulesBtn.textContent = "Hide Rules";
+        rulesBtn.textContent = "Ocultar Rules";
         rulesContainer.style.display = "block";
     }else{
-        rulesBtn.textContent = "Show Rules";
+        rulesBtn.textContent = "Mostrar Rules";
         rulesContainer.style.display = "none";
     }
 });
