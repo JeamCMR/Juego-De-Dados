@@ -104,6 +104,12 @@ rollDiceBtn.addEventListener("click",()=>{
     }
 }) 
 
+//Funcion para seguimientos de los puntos en las 6 rondas
+const updateScore = (selectedValue,achieved) => {
+    totalScore += parseInt(selectedValue);
+    totalScoreText.textContent = totalScore;
+    scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`
+}
 
 //Mostrar y ocultar div con reglas
 rulesBtn.addEventListener("click", ()=>{
