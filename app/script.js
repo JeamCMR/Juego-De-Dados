@@ -80,12 +80,24 @@ const getHighestDuplicates = (arr) =>{
     updateRadioOption(5,0);
 }
 
+//FUCION PARA RESETEAR INPUTS Y SPAN
+const resetRadioOption = () =>{
+    scoreInputs.forEach(input =>{
+        input.disabled = true;
+        input.checked = false;
+    });
+    scoreSpans.forEach(span=>{ 
+        span.textContent = "";
+    });
+}
+
 //Evento botton Tirar dados
 rollDiceBtn.addEventListener("click",()=>{
    if(rolls === 3){
     alert("Has hecho tres tiradas esta ronda. Por favor, seleccione una puntuación");
     }else{
         rolls++
+        resetRadioOption();
         rollDice();
         updateStats();
         getHighestDuplicates(diceValuesArr);
