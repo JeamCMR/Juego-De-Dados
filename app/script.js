@@ -1,7 +1,7 @@
 /** VARIABLES */
 
 const listOfAllDice = document.querySelectorAll(".die"); //Devuelve una colleccion de elementos dados (div)
-const scoreInputs = document.querySelectorAll("#score-options input"); //Devuelve una colleccion de elementos input
+const scoreInputs = document.querySelectorAll("#score-options input"); //Devuelve una nodelist de elementos input
 const scoreSpans = document.querySelectorAll("#score-options span"); //Devuelve una collecion de elementos span
 const currentRoundText = document.getElementById("current-round"); //Devuelve 1 elemento span que contieen 1 numero
 const currentRoundRollsText = document.getElementById("current-round-rolls"); //Devuelve 1 elemento span que contieen 1 numero
@@ -13,4 +13,15 @@ const rollDiceBtn = document.getElementById("roll-dice-btn"); //Botton Tirar dad
 const keepScoreBtn = document.getElementById("keep-score-btn"); //Botton Seleccionar puntos
 const rulesBtn = document.getElementById("rules-btn"); //botton Mostrar reglas
 //Div de cuadro de reglas
-    const rulesContainer = document.querySelector(".rules-container");
+const rulesContainer = document.querySelector(".rules-container"); //Devuelve un elemento div que conteien varios elementos
+
+
+let isModalShowing = false;  //variable que controla Mostrar y ocultar reglas 
+let diceValuesArr = [] //Controla el seguimiento de resultados de los datos
+let rolls = 0; 
+let score = 0;
+let totalScore = 0;
+let round = 1;
+
+//Eventos y funciones
+
