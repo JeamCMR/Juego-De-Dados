@@ -43,6 +43,12 @@ const updateStats = () => {
     currentRoundText.textContent = round;
 }
 
+//Seleccionar option y sumar puntuacion
+const updateRadioOption = (optionNode, score) => {
+    scoreInputs[optionNode].disabled = false;
+    scoreInputs[optionNode].value = score;
+    scoreSpans[optionNode].textContent = `, score = ${score}`
+}
 
 //Evento botton Tirar dados
 rollDiceBtn.addEventListener("click",()=>{
@@ -52,6 +58,7 @@ rollDiceBtn.addEventListener("click",()=>{
         rolls++
         rollDice();
         updateStats();
+        updateRadioOption(0,10);
     }
 }) 
 
