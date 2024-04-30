@@ -91,18 +91,6 @@ const resetRadioOption = () =>{
     });
 }
 
-//Evento botton Tirar dados
-rollDiceBtn.addEventListener("click",()=>{
-   if(rolls === 3){
-    alert("Has hecho tres tiradas esta ronda. Por favor, seleccione una puntuación");
-    }else{
-        rolls++
-        resetRadioOption();
-        rollDice();
-        updateStats();
-        getHighestDuplicates(diceValuesArr);
-    }
-}) 
 
 //Funcion para seguimientos de los puntos en las 6 rondas
 const updateScore = (selectedValue,achieved) => {
@@ -111,7 +99,21 @@ const updateScore = (selectedValue,achieved) => {
     scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`
 }
 
-//Mostrar y ocultar div con reglas
+//EVENTO botton Tirar dados
+rollDiceBtn.addEventListener("click",()=>{
+    if(rolls === 3){
+     alert("Has hecho tres tiradas esta ronda. Por favor, seleccione una puntuación");
+     }else{
+         rolls++
+         resetRadioOption();
+         rollDice();
+         updateStats();
+         getHighestDuplicates(diceValuesArr);
+     }
+ }) 
+ 
+
+//EVENTO Mostrar y ocultar div con reglas
 rulesBtn.addEventListener("click", ()=>{
     isModalShowing = !isModalShowing;
     if (isModalShowing) {
@@ -120,6 +122,33 @@ rulesBtn.addEventListener("click", ()=>{
     }else{
         rulesBtn.textContent = "Mostrar Rules";
         rulesContainer.style.display = "none";
-    }
+    };
 });
 
+
+//EVENTO Seleccionar puntuacion
+keepScoreBtn.addEventListener("click",()=>{
+    let selectedValue;
+    let achieved;
+    for (const radioButton of scoreInputs) {
+        if(radioButton.checked){
+            selectedValue = radioButton.value;
+            achieved = radioButton.id;
+            break;
+        };
+    };
+    if (selectedValue) {
+        rolls = 0;
+        round ++;
+        updateStats();
+        resetRadioOption();
+        updateScore(selectedValue,achieved);
+        if (round > 6) {
+            setTimeout(()=>{
+                alert(`Game Over! Your total score is ${totalScore}`)
+            },500)
+        }
+    }else{
+        alert("Seleccione una opción o tire los dados");
+    };
+});
