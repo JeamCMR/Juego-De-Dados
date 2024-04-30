@@ -80,6 +80,21 @@ const getHighestDuplicates = (arr) =>{
     updateRadioOption(5,0);
 }
 
+
+//FUNCION para dectar FullHouse
+const detectFullHouse = (arr) => {
+    const counts ={};
+    for (const num of arr) {
+        counts[num] = counts[num]? counts[num] + 1 :  1;
+    };
+   const  hasThreeOfAKind = Object.values(counts).includes(3);
+   const hasPair = Object.values(counts).includes(2);
+   if(hasThreeOfAKind && hasPair){
+    updateRadioOption(2,25);
+   }
+   updateRadioOption(5,0);
+  };
+
 //FUCION PARA RESETEAR INPUTS Y SPAN
 const resetRadioOption = () =>{
     scoreInputs.forEach(input =>{
@@ -126,6 +141,7 @@ rollDiceBtn.addEventListener("click",()=>{
          rollDice();
          updateStats();
          getHighestDuplicates(diceValuesArr);
+         detectFullHouse(diceValuesArr);
      }
  }) 
  
