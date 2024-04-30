@@ -99,6 +99,23 @@ const updateScore = (selectedValue,achieved) => {
     scoreHistory.innerHTML += `<li>${achieved} : ${selectedValue}</li>`
 }
 
+//Funcion para reset al juego 
+const resetGame = () =>{
+    diceValuesArr = [0,0,0,0,0];
+    score = 0;
+    rolls = 0;
+    totalScore = 0;
+    round = 1;
+    listOfAllDice.forEach((dice,index) =>{
+        dice.textContent = diceValuesArr[index];
+    });
+    totalScoreText.textContent = totalScore;
+    scoreHistory.innerHTML = "";
+    currentRoundRollsText.textContent = rolls;
+    currentRoundText.textContent = round;
+    resetRadioOption();
+}
+
 //EVENTO botton Tirar dados
 rollDiceBtn.addEventListener("click",()=>{
     if(rolls === 3){
@@ -145,7 +162,8 @@ keepScoreBtn.addEventListener("click",()=>{
         updateScore(selectedValue,achieved);
         if (round > 6) {
             setTimeout(()=>{
-                alert(`Game Over! Your total score is ${totalScore}`)
+                alert(`Game Over! Your total score is ${totalScore}`);
+                resetGame();
             },500)
         }
     }else{
