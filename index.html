@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Advanced Dice Game</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+
+<body>
+  <header>
+    <h1>Juego de dados avanzado</h1>
+    <button class="btn" id="rules-btn" type="button">Mostrar reglas</button>
+    <div class="rules-container">
+      <h2>Reglas</h2>
+      <ul>
+        <li>Hay un total de seis rondas</li>
+        <li>Sólo puedes tirar los dados tres veces por ronda</li>
+        <li>Para empezar el juego, tira los dados</li>
+        <li>
+            A continuación, elige una de las puntuaciones seleccionadas o vuelve a tirar los dados
+        </li>
+        <li>
+            Si elige una puntuación seleccionada, pasará a la siguiente ronda
+        </li>
+        <li>
+            Si rechaza elegir una puntuación seleccionada, puede volver a tirar los
+            dados dos veces más
+        </li>
+      </ul>
+      <h2 class="points">Puntos</h2>
+      <ul>
+        <li>Tres iguales: Suma de los cinco dados</li>
+        <li>Cuatro iguales: suma de los cinco dados</li>
+        <li>Full house: Tres de una clase y un par - 25 puntos</li>
+        <li>
+            Recta pequeña: Cuatro de los dados tienen valores consecutivos - 30 puntos
+        </li>
+        <li>
+            Recto grande: Los cinco dados tienen valores consecutivos - 40 puntos
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <main>
+    <form id="game">
+      <div id="dice">
+        <div class="die"></div>
+        <div class="die"></div>
+        <div class="die"></div>
+        <div class="die"></div>
+        <div class="die"></div>
+      </div>
+
+      <p class="rounds-text">
+        <strong>Tiradas:</strong> <span id="current-round-rolls">0</span> |
+        <strong>Rondas:</strong> <span id="current-round">1</span>
+      </p>
+
+      <div id="score-options">
+        <div>
+          <input type="radio" name="score-options" id="three-of-a-kind" value="three-of-a-kind" disabled />
+          <label for="three-of-a-kind">Tres iguales<span></span></label>
+        </div>
+        <div>
+          <input type="radio" name="score-options" id="four-of-a-kind" value="four-of-a-kind" disabled />
+          <label for="four-of-a-kind">Cuatro iguales<span></span></label>
+        </div>
+        <div>
+          <input type="radio" name="score-options" id="full-house" value="full-house" disabled />
+          <label for="full-house">Full house<span></span></label>
+        </div>
+        <div>
+          <input type="radio" name="score-options" id="small-straight" value="small-straight" disabled />
+          <label for="small-straight">Recta pequeña<span></span></label>
+        </div>
+        <div>
+          <input type="radio" name="score-options" id="large-straight" value="large-straight" disabled />
+          <label for="large-straight">Grande recta<span></span></label>
+        </div>
+
+        <div>
+          <input type="radio" name="score-options" id="none" value="none" disabled />
+          <label for="none">Ninguna de las anteriores<span></span></label>
+        </div>
+      </div>
+
+      <button class="btn" id="keep-score-btn" type="button">
+        puntuación seleccionada
+      </button>
+      <button class="btn" id="roll-dice-btn" type="button">
+        Tira los dados
+      </button>
+    </form>
+
+    <div id="scores">
+      <h3>Historial de puntuación (Puntuación total: <span id="total-score">0</span>)</h3>
+      <ol id="score-history"></ol>
+    </div>
+  </main>
+  <script src="app/script.js"></script>
+</body>
+
+</html>
