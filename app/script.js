@@ -79,9 +79,25 @@ const getHighestDuplicates = (arr) =>{
     }
     updateRadioOption(5,0);
 }
+//FUNCION PARA DECTAR scalera pequeña y larga
+const checkForStraights = (arr) =>{
+    const sortedNumbersArr = arr.sort((a,b) => a-b);
+    const uniqueNumbersArr = [...new Set(sortedNumbersArr)];
+    const uniqueNumbersStr = uniqueNumbersArr.join("");
+    
+    const smallStraightsArr = ["1234","2345","3456"];
+    const largeStraightsArr = ["12345", "23456"];
+    if(largeStraightsArr.includes(uniqueNumbersStr)){
+        updateRadioOption(4,40);
+    };
+    if (smallStraightsArr.some(straight => uniqueNumbersStr.includes(straight))) {
+        updateRadioOption(3, 30);
+      };
+    
+    updateRadioOption(5,0);
+}
 
-
-//FUNCION para dectar FullHouse
+//FUNCION para detectar FullHouse
 const detectFullHouse = (arr) => {
     const counts ={};
     for (const num of arr) {
@@ -94,6 +110,8 @@ const detectFullHouse = (arr) => {
    }
    updateRadioOption(5,0);
   };
+
+
 
 //FUCION PARA RESETEAR INPUTS Y SPAN
 const resetRadioOption = () =>{
@@ -142,6 +160,7 @@ rollDiceBtn.addEventListener("click",()=>{
          updateStats();
          getHighestDuplicates(diceValuesArr);
          detectFullHouse(diceValuesArr);
+         checkForStraights(diceValuesArr);
      }
  }) 
  
